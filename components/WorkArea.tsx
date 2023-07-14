@@ -3,7 +3,7 @@ import SortedList from "./SortedList";
 
 export default function WorkArea(){
     return (
-        <div className="h-[91%] flex">
+        <div className="flex flex-1">
             <TaskList/>
             <SortedList/>
         </div>

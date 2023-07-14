@@ -18,5 +18,15 @@
 html, body{
     height: 100vh;
     width: 100vw;
-    /* overflow:hidden; */
+    overflow:hidden;
+}
+
+.rotate-text {
+    writing-mode: vertical-lr;
+    -webkit-writing-mode: vertical-lr;
+    -ms-writing-mode: vertical-lr;
+    -webkit-transform: rotate(-180deg);
+    -moz-transform: rotate(-180deg);
+    -o-transform: rotate(-180deg);
+    transform: rotate(-180deg);
 }

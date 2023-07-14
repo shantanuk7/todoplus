@@ -1,6 +1,6 @@
 export default function TaskList() {
     return (
-        <div className="h-full w-2/6 bg-white-color">
+        <div className="tasklist bg-white-color basis-[30vw]">
             Tasks
         </div>
     );

@@ -5,26 +5,30 @@ import NotUrgNotImp from "./sorters/NotUrgNotImp";
 
 export default function SortedList(){
     return (
-        <div className="h-full w-4/6">
-            <div className="flex w-full h-[5%]">
-                <h2 className="flex-shrink-0 w-1/2 text-center bg-light-color" >Urgent</h2>
-                <h2 className="w-1/2 text-center bg-light-color" >Not Urgent</h2>
-            </div>
-            <div className="flex flex-col h-full w-[5%] items-center justify-center">
-                <div className="bg-light-color whitespace-nowrap text-s">
-                    <h2 className="-rotate-90">Important</h2>
-                </div>
-                <div className="bg-light-color whitespace-nowrap text-s">
-                    <h2 className="-rotate-90 h-1/2">Not Important</h2>
-                </div>
-            </div>
-
-            <div className="h-[95%] w-[95%] grid grid-cols-2">
-                <UrgImp/>
-                <NotUrgNotImp/>
-                <NotUrgImp/>
-                <UrgNotImp/>
-            </div>
+        <div className="sortlist flex-1">
+            <table className="h-full w-full border-solid border-2 border-light-color">
+                <tbody>
+                <tr className="h-14">
+                    <td className="w-0.5"></td>
+                    <th className="w-1/2 text-light-color p-2">Urgent</th>
+                    <th className="w-1/2 text-light-color p-2">Not Urgent</th>
+                </tr>
+                <tr className="">
+                    <th className="text-light-color w-0.5 rotate-text p-4">Important</th>
+                    <td className="w-1/2 h-1/2"><UrgImp/></td>
+                    <td className="w-1/2 h-1/2"><NotUrgNotImp/></td>
+                </tr>
+                <tr className="">
+                    <th className="text-light-color w-0.5 rotate-text p-4">Not Important</th>
+                    <td className="w-1/2 h-1/2"><NotUrgImp/></td>
+                    <td className="w-1/2 h-1/2"><UrgNotImp/></td>
+                </tr>
+                </tbody>
+            </table>
+            
+            
+            
+            
         </div>
     )
 }
