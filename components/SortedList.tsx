@@ -3,7 +3,8 @@ import NotUrgImp from "./sorters/NotUrgImp";
 import UrgNotImp from "./sorters/UrgNotImp";
 import NotUrgNotImp from "./sorters/NotUrgNotImp";
 
-export default function SortedList(){
+export default function SortedList(props:any){
+
     return (
         <div className="sortlist flex-1">
             <table className="h-full w-full border-solid border-2 border-light-color">
@@ -15,13 +16,17 @@ export default function SortedList(){
                 </tr>
                 <tr className="">
                     <th className="text-light-color w-0.5 rotate-text p-4">Important</th>
-                    <td className="w-1/2 h-1/2"><UrgImp/></td>
-                    <td className="w-1/2 h-1/2"><NotUrgNotImp/></td>
+                    <td className="w-1/2 h-1/2">
+                        <UrgImp/>
+                        </td>
+                    <td className="w-1/2 h-1/2"><NotUrgNotImp /></td>
                 </tr>
                 <tr className="">
                     <th className="text-light-color w-0.5 rotate-text p-4">Not Important</th>
-                    <td className="w-1/2 h-1/2"><NotUrgImp/></td>
-                    <td className="w-1/2 h-1/2"><UrgNotImp/></td>
+                    <td className="w-1/2 h-1/2">
+                        <NotUrgImp taskList={props.taskList} handleChange={(id:string,urg: boolean, imp: boolean)=>props.handlePriorityChange(id,imp,urg)}/>
+                        </td>
+                    <td className="w-1/2 h-1/2"><UrgNotImp /></td>
                 </tr>
                 </tbody>
             </table>
