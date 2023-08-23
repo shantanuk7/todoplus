@@ -15,15 +15,16 @@ interface TaskItem {
 export default function WorkArea(){
 
     //Main Parent level tasks list array storing state of all tasks.
+    const [taskList, setTaskList] = useState<TaskItem[]>([]);
 
-    const [taskList, setTaskList] = useState<TaskItem[]>(()=>{
+    useEffect(() => {
         if (typeof window !== 'undefined') {
-            // Perform localStorage action after window is loaded
             const savedTasks = localStorage.getItem("tasks");
-            //if savedTasks is not empty, it sets task list with existing tasks, Else empty array
-            return savedTasks?(JSON.parse(savedTasks)):([]);
-          }
-    });
+            if (savedTasks) {
+                setTaskList(JSON.parse(savedTasks));
+            }
+        }
+    }, []);
 
     useEffect(() => {
         localStorage.setItem("tasks", JSON.stringify(taskList));
@@ -43,6 +44,18 @@ export default function WorkArea(){
                 }
             ]);
         }
+    }
+
+    //handleEdit called by TaskList
+    const handleEdit = (id: string, newText: string) => {
+        const newTaskListState = taskList.map(taskitem => {
+            if(taskitem.id === id){
+                return {...taskitem, text: newText}
+            }
+            return taskitem;
+        });
+
+        setTaskList(newTaskListState);
     }
 
     //handleDelete is called by <TaskList/> when it is called by form onSubmit in TaskList component.
@@ -69,7 +82,7 @@ export default function WorkArea(){
 
     return (
         <div className="flex flex-1">
-            <TaskList taskList={taskList} handleSubmit={handleSubmit} handleDelete={handleDelete}/>
+            <TaskList taskList={taskList} handleSubmit={handleSubmit} handleDelete={handleDelete} handleEdit={handleEdit} handleChange={handlePriorityChange}/>
             <SortedList taskList={taskList} handlePriorityChange={handlePriorityChange}/>
         </div>
     )

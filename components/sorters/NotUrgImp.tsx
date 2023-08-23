@@ -1,39 +1,60 @@
-'use client'
+"use client";
 
 import { useState } from "react";
 
-export default function NotUrgImp(props:any){
-    //array in which list of tasks is stored
-    const [tasks, setTasks] = useState(['']);
-    // useState<TaskItem[]>([]);
+export default function NotUrgImp(props: any) {
+  //array in which list of tasks is stored
+  // const [tasks, setTasks] = useState(['']);
+  // useState<TaskItem[]>([]);
 
-    //handle Drag and drop
-    
-    function handleOnDrop(e:React.DragEvent){
-        console.log("Droping: ");
-        console.log(e);
-        
-        const taskId = e.dataTransfer.getData("taskId") as string;
-        console.log("taskId", taskId);
-        setTasks([...tasks, taskId]);
-        
-        //taskId is passed from this component to SortedList props
-        //then it is passed from SortedList to WorkArea where actually updation is done
-        //in handlePriorityChange(id: string)
-        props.handleChange(taskId,true,false);
-    }
+  //handle Drag and drop
 
-    function handleDragOver(e:React.DragEvent){
-        e.preventDefault();
-        console.log("Drag over",e);
-    }
+  function handleOnDrag(e: React.DragEvent, taskId: string) {
+    e.dataTransfer.setData("taskId", taskId);
+    console.log("Started drag on event: ");
+    console.log(taskId);
+    console.log(e);
+  }
 
+  function handleOnDrop(e: React.DragEvent) {
+    console.log("Droping: ");
+    console.log(e);
 
-    return (
-        <div className="border-2 border-white-color w-full h-full text-white" onDrop={handleOnDrop} onDragOver={handleDragOver}>
-            {props.taskList.filter((item:any)=>((item.urg == false) && item.imp == true)).map((taskitem:any)=>{
-                return <li key={taskitem.id}>{taskitem.text}</li>
-            })}
-        </div>
-    )
+    const taskId = e.dataTransfer.getData("taskId") as string;
+    console.log("taskId", taskId);
+    // setTasks([...tasks, taskId]);
+
+    //taskId is passed from this component to SortedList props
+    //then it is passed from SortedList to WorkArea where actually updation is done
+    //in handlePriorityChange(id: string)
+    props.handleChange(taskId, true, false);
+  }
+
+  function handleDragOver(e: React.DragEvent) {
+    e.preventDefault();
+    console.log("Drag over", e);
+  }
+
+  return (
+    <div
+      className="border-2 border-white-color w-full h-full text-white"
+      onDrop={handleOnDrop}
+      onDragOver={handleDragOver}
+    >
+      {props.taskList
+        ?.filter((item: any) => item.urg == false && item.imp == true)
+        .map((taskitem: any) => {
+          return (
+            <li
+              key={taskitem.id}
+              draggable
+              onDragStart={(e: any) => handleOnDrag(e, taskitem.id)}
+              className="cursor-grab"
+            >
+              {taskitem.text}
+            </li>
+          );
+        })}
+    </div>
+  );
 }

@@ -17,16 +17,16 @@ export default function SortedList(props:any){
                 <tr className="">
                     <th className="text-light-color w-0.5 rotate-text p-4">Important</th>
                     <td className="w-1/2 h-1/2">
-                        <UrgImp/>
+                        <UrgImp taskList={props.taskList} handleChange={(id:string,urg: boolean, imp: boolean)=>props.handlePriorityChange(id,imp,urg)}/>
                         </td>
-                    <td className="w-1/2 h-1/2"><NotUrgNotImp /></td>
+                    <td className="w-1/2 h-1/2"><NotUrgNotImp taskList={props.taskList} handleChange={(id:string,urg: boolean, imp: boolean)=>props.handlePriorityChange(id,imp,urg)}/></td>
                 </tr>
                 <tr className="">
                     <th className="text-light-color w-0.5 rotate-text p-4">Not Important</th>
                     <td className="w-1/2 h-1/2">
                         <NotUrgImp taskList={props.taskList} handleChange={(id:string,urg: boolean, imp: boolean)=>props.handlePriorityChange(id,imp,urg)}/>
                         </td>
-                    <td className="w-1/2 h-1/2"><UrgNotImp /></td>
+                    <td className="w-1/2 h-1/2"><UrgNotImp taskList={props.taskList} handleChange={(id:string,urg: boolean, imp: boolean)=>props.handlePriorityChange(id,imp,urg)}/></td>
                 </tr>
                 </tbody>
             </table>
