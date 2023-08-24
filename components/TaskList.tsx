@@ -73,7 +73,7 @@ export default function TaskList(props: any) {
     }
 
     return (
-        <div className="tasklist bg-white-color basis-[30vw] p-3" onDragOver={handleDragOver} onDrop={(e)=>handleOnDrop(e)}>
+        <div className="tasklist bg-white-color basis-[30vw] p-3 overflow-auto max-h-[90vh]" onDragOver={handleDragOver} onDrop={(e)=>handleOnDrop(e)}>
             <h3 className="text-center">Tasks</h3>
 
             <ul>

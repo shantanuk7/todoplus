@@ -30,7 +30,7 @@ export default function UrgImp(props: any) {
 
   return (
     <div
-      className="border-2 border-white-color w-full h-full text-white"
+      className="border-2 border-white-color w-full h-full text-white overflow-auto"
       onDrop={handleOnDrop}
       onDragOver={handleDragOver}
     >
