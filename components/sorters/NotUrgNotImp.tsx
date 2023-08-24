@@ -1,4 +1,8 @@
 "use client"
+
+import React from "react";
+import { useState } from "react";
+
 export default function NotUrgNotImp(props: any) {
 
   //handle Drag and drop
@@ -35,6 +39,7 @@ export default function NotUrgNotImp(props: any) {
       onDrop={handleOnDrop}
       onDragOver={handleDragOver}
     >
+      <ul className="sortedUL">
       {props.taskList
         ?.filter((item: any) => item.urg == false && item.imp == false)
         .map((taskitem: any) => {
@@ -43,12 +48,14 @@ export default function NotUrgNotImp(props: any) {
               key={taskitem.id}
               draggable
               onDragStart={(e: any) => handleOnDrag(e, taskitem.id)}
+              
               className="cursor-grab"
             >
               {taskitem.text}
             </li>
           );
         })}
+      </ul>
     </div>
   );
 }

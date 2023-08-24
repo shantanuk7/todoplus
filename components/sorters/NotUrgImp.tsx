@@ -41,6 +41,7 @@ export default function NotUrgImp(props: any) {
       onDrop={handleOnDrop}
       onDragOver={handleDragOver}
     >
+      <ul className="sortedUL">
       {props.taskList
         ?.filter((item: any) => item.urg == false && item.imp == true)
         .map((taskitem: any) => {
@@ -55,6 +56,7 @@ export default function NotUrgImp(props: any) {
             </li>
           );
         })}
+      </ul>
     </div>
   );
 }

@@ -31,7 +31,8 @@ html, body{
     transform: rotate(-180deg);
 }
 
-ul{
-    text-decoration: none;
+.sortedUL {
     list-style-type: none !important;
+    margin: 0;
+    padding: 0.5em;
 }
